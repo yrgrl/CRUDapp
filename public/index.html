@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechgetAfrica CRUD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>TechgetAfrica Shop</h1>
+    <form id="itemForm">
+        <input type="text" id="itemName" placeholder="Item Name" required>
+        <button type="submit">Add Item</button>
+    </form>
+    <ul id="itemList"></ul>
+
+    <script>
+        const itemForm = document.getElementById('itemForm');
+        const itemList = document.getElementById('itemList');
+
+        // Fetch and display items
+        function fetchItems() {
+            fetch('/items')
+                .then(response => response.json())
+                .then(items => {
+                    itemList.innerHTML = '';
+                    items.forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <span>${item.name}</span>
+                            <button class="deleteBtn" onclick="deleteItem(${item.id})">Delete</button>
+                        `;
+                        itemList.appendChild(li);
+                    });
+                });
+        }
+
+        // Add new item
+        itemForm.onsubmit = (e) => {
+            e.preventDefault();
+            const name = document.getElementById('itemName').value;
+            fetch('/items', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            })
+            .then(() => {
+                document.getElementById('itemName').value = '';
+                fetchItems();
+            });
+        };
+
+        // Delete item
+        function deleteItem(id) {
+            fetch(`/items/${id}`, { method: 'DELETE' })
+                .then(() => fetchItems());
+        }
+
+        // Initial fetch
+        fetchItems();
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+#itemForm {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#itemName {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px 0 0 4px;
+    width: 70%;
+}
+
+#itemForm button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#itemForm button:hover {
+    background-color: #2980b9;
+}
+
+#itemList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#itemList li {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.deleteBtn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.deleteBtn:hover {
+    background-color: #c0392b;
+}
